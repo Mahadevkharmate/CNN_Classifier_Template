@@ -1,0 +1,37 @@
+numpy
+pandas
+matplotlib
+scikit-learn
+tensorflow
+dvc
+notebook
+seaborn
+python-box==6.0.2
+pyYAML
+ensure==1.0.2
+joblib
+types-pyYAML
+scipy
+mlflow==1.26.1
+protobuf<5
+keras
+opencv-python
+tqdm
+jupyter
+-e .
+# Dev dependencies
+tox==3.25.1
+mypy==0.971
+
+# Testing
+pytest==7.4.0
+pytest-cov==4.1.0
+
+# Code quality & linting
+black==23.3.0
+flake8==6.1.0
+isort==5.12.0
+
+# Notebooks / debugging
+jupyterlab==4.0.5
+ipython==7.34.0

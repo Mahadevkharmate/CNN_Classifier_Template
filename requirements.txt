@@ -1,0 +1,21 @@
+numpy
+pandas
+matplotlib
+scikit-learn
+tensorflow
+dvc
+notebook
+seaborn
+python-box==6.0.2
+pyYAML
+ensure==1.0.2
+joblib
+types-pyYAML
+scipy
+mlflow==1.26.1
+keras
+opencv-python
+tqdm
+jupyter
+
+-e .
