@@ -22,19 +22,30 @@ cnn_classifier/
 ├── data/ # Raw & processed datasets
 │ ├── raw/ # Unprocessed dataset
 │ ├── processed/ # Preprocessed dataset
-│
+|
+├── research/ # for experiments
+│ ├── trials.ipynb 
+|
 ├── notebooks/ # Jupyter notebooks for experimentation
 │ ├── 01_data_analysis.ipynb
 │ ├── 02_model_training.ipynb
 │ ├── 03_model_evaluation.ipynb
 │
 ├── src/ # Source code
-│ ├── data_pipeline.py # Data preprocessing & augmentation
-│ ├── model.py # CNN architecture
-│ ├── train.py # Model training
-│ ├── evaluate.py # Evaluation scripts
-│ ├── predict.py # Prediction script
+| ├──components
+|       ├──data_ingestion.py
+|       ├──base_model.py  # CNN architecture
+|       ├──train.py  # Model training
+|       ├──evaluation.py # Evaluation scripts
+|       ├──predict.py # Prediction script
+| ├──pipeline
+|       ├── data_pipeline.py # Data preprocessing & augmentation
+|       ├──training_pipeline.py
+|       ├──prediction_pipeline.py
+│ 
+│ 
 │
+|
 ├── deployment/
 │ ├── app.py # FastAPI app for inference
 │ ├── Dockerfile # Docker configuration
