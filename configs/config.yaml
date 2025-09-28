@@ -1,0 +1,15 @@
+#define root directory for artifacts and models
+artifacts_root: artifacts
+models_root: models
+
+# define data ingestion related config
+data_ingestion:
+  #define root for data ingestion
+  root_dir: artifacts/data_ingestion
+  # define dataset download url
+  source_URL: https://download.microsoft.com/download/3/E/1/3E1C3F21-ECDB-4869-8368-6DEBA77B919F/kagglecatsanddogs_5340.zip
+  # local location to download data file
+  local_data_file: artifacts/data_ingestion/data.zip
+  # local location to unzip and extract data
+  unzip_dir: artifacts/data_ingestion
+ 
