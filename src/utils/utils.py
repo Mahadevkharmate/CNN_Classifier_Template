@@ -35,6 +35,6 @@ def get_size():
     pass
 
 @ensure_annotations
-def create_directories():
+def create_directory():
     pass
 
