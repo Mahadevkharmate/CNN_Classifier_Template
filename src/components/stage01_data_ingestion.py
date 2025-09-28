@@ -11,8 +11,9 @@ from src.entity.config_entity import DataIngestionConfig
 from src.utils import utils
 
 class DataIngestion:
-    def __init__(self):
-        pass
+    def __init__(self,config:DataIngestionConfig):
+        self.config = config
+        
 
     def download_file(self):
         pass
