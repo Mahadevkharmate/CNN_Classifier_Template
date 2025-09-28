@@ -12,4 +12,5 @@ data_ingestion:
   local_data_file: artifacts/data_ingestion/data.zip
   # local location to unzip and extract data
   unzip_dir: artifacts/data_ingestion
+  
  
