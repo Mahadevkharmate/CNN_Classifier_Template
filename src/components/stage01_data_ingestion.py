@@ -7,7 +7,7 @@ from src.logger.logging import logging
 from src.exception import CustomException
 from pathlib import Path
 from tqdm import tqdm #library used to display smart progress bars for loops and iterations
-from src.entity import DataIngestionConfig 
+from src.entity.config_entity import DataIngestionConfig 
 from src.utils import utils
 
 class DataIngestion:
@@ -17,7 +17,6 @@ class DataIngestion:
     def download_file(self):
         pass
 
-    
 
     def get_updated_list_of_files(self):
         pass
