@@ -1,0 +1,17 @@
+# Parameters for the data ingestion stage
+data_ingestion_params:
+  # percentage of data to be used for validation
+  train_val_split_ratio: 0.2
+  # random seed for reproducibility
+  random_seed: 42
+
+# Parameters for the model training stage
+model_training_params:
+  # number of epochs for training
+  epochs: 10
+  # batch size for training
+  batch_size: 32
+  # learning rate for the optimizer
+  learning_rate: 0.001
+  # image size for resizing input images
+  image_size: 224

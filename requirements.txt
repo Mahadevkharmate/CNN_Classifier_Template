@@ -7,7 +7,7 @@ dvc
 notebook
 seaborn
 python-box==6.0.2
-pyYAML
+PyYAML
 ensure==1.0.2
 joblib
 types-pyYAML
@@ -17,5 +17,6 @@ keras
 opencv-python
 tqdm
 jupyter
+pywinpty==1.1.6
 
 -e .
