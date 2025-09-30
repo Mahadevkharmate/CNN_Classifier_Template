@@ -28,6 +28,7 @@ You can adapt this template to any classification task such as:
 - Update the dvc.yaml
 - run "dvc repro" for running all the stages in pipeline
 
+![Data Ingestion](flowcharts/Data Ingestion.png)
 
 ### Dataset URL:
 [Click here to download data](https://github.com/entbappy/Branching-tutorial/raw/master/cat-dog-data.zip)
@@ -138,33 +139,38 @@ cnn_classifier/
 # Clone the repository
 git clone https://github.com/your-username/cnn-classifier.git
 cd cnn-classifier
-
+```
+```bash
 # Create virtual environment
 python -m venv venv
 source venv/bin/activate   # For Linux/Mac
 venv\Scripts\activate      # For Windows
-
+```
+```bash
 # Install dependencies
 pip install -r requirements.txt
-
-
+```
+```bash
 #🏃‍♂️ Usage
 1️⃣ Train Model
 python src/train.py --config config.yaml
-
+```
+```bash
 2️⃣ Evaluate Model
 python src/evaluate.py --model models/best_model.h5
-
+```
+```bash
 3️⃣ Run API Locally
 uvicorn deployment.app:app --reload
-
-
+```
+```bash
 API available at: http://127.0.0.1:8000/docs
-
+```
+``bash
 4️⃣ Docker Build & Run
 docker build -t cnn-classifier .
 docker run -p 8000:8000 cnn-classifier
-
+```
 
 # 📈 Results
 Metric	    Value(change as per results)
