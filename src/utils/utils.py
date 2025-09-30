@@ -24,7 +24,8 @@ def read_yaml(path_to_yaml: Path) -> ConfigBox:
 def save_json(path_to_json: Path, data: Any) -> None:
     try:
         with open(path_to_json, 'w') as file:
-            json.dump(data, file)
+            json.dump(data, file,indent=4)
+        logging.info(f"JSON file saved at {path_to_json}")
     except Exception as e:
         logging.error(f"Error saving JSON file at {path_to_json}: {e}")
         raise CustomException(f"Error saving JSON file at {path_to_json}: {e}")
@@ -34,6 +35,7 @@ def load_json(path_to_json: Path) -> Any:
     try:
         with open(path_to_json, 'r') as file:
             return json.load(file)
+        logging.info(f"JSON file loaded from {path_to_json}")
     except Exception as e:
         logging.error(f"Error loading JSON file at {path_to_json}: {e}")
         raise CustomException(f"Error loading JSON file at {path_to_json}: {e}")
@@ -73,3 +75,27 @@ def create_directory(path_to_directories: list):  # plain list, not List[Path]
             raise TypeError(f"{path} is not a Path")
         path.mkdir(parents=True, exist_ok=True)
 
+@ensure_annotations
+def save_bin(data: Any, path: Path):
+    """save binary file
+
+    Args:
+        data (Any): data to be saved as binary
+        path (Path): path to binary file
+    """
+    joblib.dump(value=data, filename=path)
+    logging.info(f"binary file saved at: {path}")
+
+@ensure_annotations
+def load_bin(path: Path) -> Any:
+    """load binary data
+
+    Args:
+        path (Path): path to binary file
+
+    Returns:
+        Any: object stored in the file
+    """
+    data = joblib.load(path)
+    logging.info(f"binary file loaded from: {path}")
+    return data
