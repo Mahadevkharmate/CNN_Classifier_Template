@@ -2,6 +2,7 @@ from pathlib import Path
 from src.entity.config_entity import TrainingConfig
 import os
 import tensorflow as tf
+tf.config.run_functions_eagerly(True)
 
 
 class Training:
@@ -56,9 +57,13 @@ class Training:
         model.save(path) #save the model to the specified path
 
     def train(self, callback_list: list): #train the model with the specified callbacks
-        self.steps_per_epoch = self.train_generator.samples// self.train_genenrator.batch_size #calculate the steps per epoch
+        self.steps_per_epoch = self.train_generator.samples// self.train_generator.batch_size #calculate the steps per epoch
         self.validation_steps = self.valid_generator.samples// self.valid_generator.batch_size #calculate the validation steps
-
+        
+        self.model.compile(optimizer=tf.keras.optimizers.Adam(),
+                           loss=tf.keras.losses.CategoricalCrossentropy(),
+                            metrics=["accuracy"]) #compile the model with Adam optimizer, Categorical Crossentropy loss and accuracy metric
+        
         #fit the model with the train and valid generators, steps per epoch, validation steps, epochs and callbacks
         self.model.fit(
             self.train_generator,
