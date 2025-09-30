@@ -4,7 +4,8 @@ from src.constants import CONFIG_FILE_PATH,PARAMS_FILE_PATH
 from src.entity.config_entity import (
     DataIngestionConfig,
     PrepareBaseModelConfig,
-    PrepareCallbacksConfig
+    PrepareCallbacksConfig,
+    TrainingConfig
 )
 import os
 class ConfigurationManager:
@@ -57,6 +58,22 @@ class ConfigurationManager:
 
         return prepare_callback_config
 
-
+    def get_training_config(self) -> TrainingConfig:
+        config = self.config["training"] #getting training section from config.yaml file
+        params = self.params #getting all parameters from params.yaml file
+        create_directory([Path(config["root_dir"])]) #create root_dir directory of training
+        prepare_base_model = self.config["prepare_base_model"] #getting prepare_base_model section from config.yaml file
+        training_data = os.path.join(self.config["data_ingestion"]["unzip_dir"],"PetImages") #path where data is unzipped
+        training_config = TrainingConfig( 
+            root_dir=Path(config["root_dir"]),
+            trained_model_path=Path(config["trained_model_path"]),
+            updated_base_model_path=Path(prepare_base_model["updated_base_model_path"]),
+            training_data=Path(training_data),
+            params_epochs=params["EPOCHS"],
+            params_batch_size=params["BATCH_SIZE"],
+            params_is_augmentation=params["AUGMENTATION"],
+            params_image_size=params["IMAGE_SIZE"]
+        )   #prepare TrainingConfig dataclass object
+        return training_config
 
       
