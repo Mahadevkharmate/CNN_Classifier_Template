@@ -4,13 +4,17 @@ models_root: models
 
 # define data ingestion related config
 data_ingestion:
-  #define root for data ingestion
-  root_dir: artifacts/data_ingestion
-  # define dataset download url
-  source_URL: https://download.microsoft.com/download/3/E/1/3E1C3F21-ECDB-4869-8368-6DEBA77B919F/kagglecatsanddogs_5340.zip
-  # local location to download data file
-  local_data_file: artifacts/data_ingestion/data.zip
-  # local location to unzip and extract data
-  unzip_dir: artifacts/data_ingestion
-  
- 
+  root_dir: artifacts/data_ingestion #define root for data ingestion
+  source_URL: https://download.microsoft.com/download/3/E/1/3E1C3F21-ECDB-4869-8368-6DEBA77B919F/kagglecatsanddogs_5340.zip # define dataset download url
+  local_data_file: artifacts/data_ingestion/data.zip # local location to download data file
+  unzip_dir: artifacts/data_ingestion  # local location to unzip and extract data
+
+# define data validation related config
+#write now in this template we are not using data validation
+
+
+#define base model config
+prepare_base_model:
+  root_dir: artifacts/prepare_base_model #for root dir of base model
+  base_model_path: artifacts/prepare_base_model/base_model.h5 #path to save base model
+  updated_base_model_path: artifacts/prepare_base_model/updated_base_model.h5 #path to save updated base model
