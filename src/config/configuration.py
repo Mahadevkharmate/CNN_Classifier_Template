@@ -5,7 +5,8 @@ from src.entity.config_entity import (
     DataIngestionConfig,
     PrepareBaseModelConfig,
     PrepareCallbacksConfig,
-    TrainingConfig
+    TrainingConfig,
+    EvaluationConfig
 )
 import os
 class ConfigurationManager:
@@ -76,4 +77,14 @@ class ConfigurationManager:
         )   #prepare TrainingConfig dataclass object
         return training_config
 
-      
+    def get_validation_config(self) -> EvaluationConfig:
+        trained_model = self.config["training"] #getting training section from config.yaml file
+        
+        eval_config = EvaluationConfig(
+            path_of_model=Path(trained_model["trained_model_path"]),
+            training_data=self.config.data_ingestion.unzip_dir,
+            params_image_size=self.params.IMAGE_SIZE,
+            params_batch_size=self.params.BATCH_SIZE
+        )
+        
+        return eval_config
