@@ -28,7 +28,7 @@ You can adapt this template to any classification task such as:
 - Update the dvc.yaml
 - run "dvc repro" for running all the stages in pipeline
 
-![Data Ingestion](flowcharts/Data Ingestion.png)
+![Data Ingestion](https://github.com/Mahadevkharmate/CNN_Classifier_Template/blob/73454cff70938969a4b6a1b90de7e6c0797e7bf3/flowcharts/Data%20Ingestion.png)
 
 ### Dataset URL:
 [Click here to download data](https://github.com/entbappy/Branching-tutorial/raw/master/cat-dog-data.zip)
