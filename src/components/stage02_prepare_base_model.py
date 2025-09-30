@@ -18,23 +18,29 @@ class PrepareBaseModel:
     
     @staticmethod
     def _prepare_base_model(model, classes, freeze_all, freeze_till, learning_rate):
+        
         if freeze_all: # If freeze_all is True, freeze all layers in the base model
             for layer in model.layers:
                 layer.trainable = False # Freeze the entire base model
         elif (freeze_till is not None) and (freeze_till > 0): 
             for layer in model.layers[:-freeze_till]:
                 layer.trainable = False  # Freeze layers up to the specified layer
+
         # Add custom layers on top of the base model
         flatten_in = tf.keras.layers.Flatten()(model.output) # Flatten the output of the base model
+
         # Add a dense layer with softmax activation for classification
         prediction = tf.keras.layers.Dense(units=classes, activation="softmax")(flatten_in)
+
         # Create the final model
         full_model = tf.keras.Model(inputs=model.input, outputs=prediction)
+
         # Compile the model with Adam optimizer and categorical crossentropy loss
         full_model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=learning_rate),
                            loss=tf.keras.losses.CategoricalCrossentropy(),
                            metrics=["accuracy"])
         full_model.summary() # Print the model summary
+
         return full_model
 
 
