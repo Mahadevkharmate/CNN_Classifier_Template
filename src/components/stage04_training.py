@@ -1,13 +1,14 @@
 from pathlib import Path
-from src.entity.config_entity import TrainingConfig
+from src.entity.config_entity import TrainingConfig,PrepareCallbacksConfig
 import os
 import tensorflow as tf
 tf.config.run_functions_eagerly(True)
 
 
 class Training:
-    def __init__(self, config: TrainingConfig):
+    def __init__(self, config: TrainingConfig, callbacks_config: PrepareCallbacksConfig):
         self.config = config
+        self.callbacks_config = callbacks_config
 
     def get_base_model(self):
         self.model = tf.keras.models.load_model(self.config.updated_base_model_path) #load the updated base model
@@ -56,10 +57,22 @@ class Training:
     def save_model(path: Path, model: tf.keras.Model): 
         model.save(path) #save the model to the specified path
 
-    def train(self, callback_list: list): #train the model with the specified callbacks
+    def train(self, callback_list:list = None): #train the model with the specified callbacks
+
+        checkpoint_path = "artifacts/prepare_callbacks/checkpoint_dir/model.h5" #set the checkpoint path
+        
+        if os.path.exists(checkpoint_path): #if the checkpoint path exists
+            print(f"checkpoint found at {checkpoint_path}, loading the weights(model) to resume the training")
+            self.model = tf.keras.models.load_model(checkpoint_path) #load the model from the checkpoint path
+            print("loaded the model from checkpoint, resuming the training.....")
+        else:
+            print("checkpoint not found, training the model from scratch.....")
+            self.model = self.model #if the checkpoint path does not exist, use the current model
+
         self.steps_per_epoch = self.train_generator.samples// self.train_generator.batch_size #calculate the steps per epoch
         self.validation_steps = self.valid_generator.samples// self.valid_generator.batch_size #calculate the validation steps
         
+        # Always compile after loading/rebuilding the model
         self.model.compile(optimizer=tf.keras.optimizers.Adam(),
                            loss=tf.keras.losses.CategoricalCrossentropy(),
                             metrics=["accuracy"]) #compile the model with Adam optimizer, Categorical Crossentropy loss and accuracy metric
@@ -73,5 +86,7 @@ class Training:
             epochs=self.config.params_epochs,
             callbacks=callback_list
         )
+
+
         self.save_model(path=self.config.trained_model_path, 
                         model=self.model) #save the trained model
