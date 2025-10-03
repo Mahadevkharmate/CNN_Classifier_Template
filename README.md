@@ -174,10 +174,10 @@ docker run -p 8000:8000 cnn-classifier
 
 # 📈 Results
 Metric	    Value(change as per results)
-Accuracy	   98.5%
-Precision	98.2%
-Recall	   97.8%
-F1 Score	   98.0%
+Accuracy	   92.5%
+Precision	--.-%
+Recall	   --.-%
+F1 Score	   --.-%
 
 
  ☁️ Deployment (AWS Example)
