@@ -79,10 +79,11 @@ class ConfigurationManager:
 
     def get_validation_config(self) -> EvaluationConfig:
         trained_model = self.config["training"] #getting training section from config.yaml file
-        
+        eval_config = self.config["evaluation"] #getting evaluation section from config.yaml file
+
         eval_config = EvaluationConfig(
             path_of_model=Path(trained_model["trained_model_path"]),
-            training_data=self.config.data_ingestion.unzip_dir,
+            training_data=Path(eval_config["training_data"]),
             params_image_size=self.params.IMAGE_SIZE,
             params_batch_size=self.params.BATCH_SIZE
         )
