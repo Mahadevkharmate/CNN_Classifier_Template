@@ -5,7 +5,7 @@ import joblib
 from pathlib import Path
 from typing import List
 from src.logger.logging import logging
-from typing import Any
+from typing import Any, Dict, Union
 from ensure import ensure_annotations
 from box import ConfigBox
 from src.exception import CustomException
@@ -20,8 +20,8 @@ def read_yaml(path_to_yaml: Path) -> ConfigBox:
         logging.error(f"Error reading YAML file at {path_to_yaml}: {e}")
         raise CustomException(f"Error reading YAML file at {path_to_yaml}: {e}")
 
-@ensure_annotations
-def save_json(path_to_json: Path, data: Any) -> None:
+
+def save_json(path_to_json: Path, data: Dict[str,Any]) -> None:
     try:
         with open(path_to_json, 'w') as file:
             json.dump(data, file,indent=4)
