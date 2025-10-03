@@ -28,6 +28,7 @@ class Evaluation:
             directory=self.config.training_data,
             subset="validation",
             shuffle=False,
+            class_mode="categorical",
             **dataflow_kwargs
         )
 
@@ -44,4 +45,4 @@ class Evaluation:
 
     def save_score(self):
         scores = {"loss": self.score[0], "accuracy": self.score[1]}
-        save_json(path=Path("scores.json"), data=scores)
+        save_json(Path("scores.json"), scores)
