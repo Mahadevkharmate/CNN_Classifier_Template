@@ -29,3 +29,10 @@ prepare_callbacks:
 training:
   root_dir: artifacts/training
   trained_model_path: artifacts/training/model.h5
+
+#define evaluation config
+evaluation:
+  path_of_model: artifacts/training/model.h5
+  training_data: artifacts/data_ingestion/PetImages   # 👈 points to folder with Cat and Dog
+  
+
